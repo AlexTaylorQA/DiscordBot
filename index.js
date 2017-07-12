@@ -1,34 +1,19 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
- 
+const { CommandoClient } = require('discord.js-commando');
+const path = require('path');
+
+const client = new CommandoClient({
+    commandPrefix: '!bot',
+    disableEveryone: true
+});
+
+client.registry
+    .registerGroups([
+        ['group1', 'Our First Command Group']
+    ])
+    .registerCommandsIn(path.join(__dirname, 'commands'));
+
 client.on('ready', () => {
-  console.log('I am ready!');
+    console.log('Logged in!');
 });
- 
-client.on('message', message => {
-  if (message.content.includes('!bot')) {
-    var cmd = message.content.substring(5,message.content.length);
-    
-    switch(cmd)
-    {
-        case "hw": 
-            message.reply("Hello world!");
-            break;
 
-        case "dice":
-            for(i = 0; i < 15; i++){
-            message.reply("Result: " + (Math.floor(Math.random() * 6) + 1));
-            }
-            break;
-
-        default: 
-            message.reply("Invalid command.");
-            break;
-
-    }
-  }
- 
-  
-});
- 
 client.login('MzMzOTc0MjI1Mzk0MDczNjAw.DEUdWA.jCdcRM1eUut-oeiFgL7vinUI0Xg');

@@ -4,42 +4,45 @@ function doCmd(inText)
 {
 	var trimText = inText.trim();
 	var splitCmd = trimText.split(" ");
-		
+	var theStr = "";
+
 	switch(splitCmd[0].toLowerCase())
 	{
 		case "create":
-		createCar(splitCmd);
+			theStr = createCar(splitCmd);
 			break;
 		
 		case "check":
 			switch(splitCmd[1].toLowerCase())
 			{
 				case "in":
-					checkIn(splitCmd);	
+					theStr = checkIn(splitCmd);	
 					break;
 				
 				case "out":
-					checkOut(splitCmd);
+					theStr = checkOut(splitCmd);
 					break;
 					
 				default:
-					alert("Invalid command. Please try:\n- Create [manufacturer] [model] [registration] \n  [fault 1] [fault 2] ...\n- Output\n- Check In [registration]\n- Check Out [registration]\n\nNOTE: commands are not case-sensitive.");
+					theStr = "\nInvalid command. Please try:\n\n!bot garage [command]\n\nCommands:\n\n- Create [manufacturer] [model] [registration] [fault 1] [fault 2] ...\n- Output\n- Check In [registration]\n- Check Out [registration]\n\nNOTE: commands are not case-sensitive. Registration is, however.";
 					break;
 			}
 			break;
 		
 		case "output":
-			showAll();
+			theStr = showAll();
 			break;
 			
 		default:
-			alert("Invalid command. Please try:\n- Create [manufacturer] [model] [registration] \n  [fault 1] [fault 2] ...\n- Output\n- Check In [registration]\n- Check Out [registration]\n\nNOTE: commands are not case-sensitive.");
+			theStr = "\nInvalid command. Please try:\n\n!bot garage [command]\n\nCommands:\n\n- Create [manufacturer] [model] [registration] [fault 1] [fault 2] ...\n- Output\n- Check In [registration]\n- Check Out [registration]\n\nNOTE: commands are not case-sensitive. Registration is, however.";
 			break;
 		
 	}
+	return theStr;
 }
 function createCar(splitCmd)
 {
+	var str = "";
 	var newCar = new Array();
 	var faults = new Array();
 	
@@ -53,7 +56,7 @@ function createCar(splitCmd)
 	
 	if (splitCmd.length > 4)
 	{
-		for(i = 5; i < splitCmd.length; i++)
+		for(i = 4; i < splitCmd.length; i++)
 		{
 			faults.push(splitCmd[i]);
 		}
@@ -67,12 +70,12 @@ function createCar(splitCmd)
 	
 	allCars.push(newCar);
 	
-	document.getElementById("cmd").value = "";
-	
-	alert("New car created.");
+	str = "\nNew car created.";
+	return str;
 }
 function checkIn(splitCmd)
 {
+	var str = "";
 	var checkReg = splitCmd[2];
 	
 	for(i = 0; i < allCars.length; i++)
@@ -82,11 +85,12 @@ function checkIn(splitCmd)
 			garage.push(allCars[i]);
 		}
 	}
-	alert("Car " + checkReg + " checked in.")
-	
+	str = ("\nCar " + checkReg + " checked in.");
+	return str;
 }
 function checkOut(splitCmd)
 {
+	var str = "";
 	var checkReg = splitCmd[2];
 	
 	var endloop = garage.length;
@@ -99,29 +103,37 @@ function checkOut(splitCmd)
 			i = endloop;
 		}
 	}
-	alert("Car " + checkReg + " checked out.")
+	str = ("\nCar " + checkReg + " checked out.");
+	return str;
 }
 function showAll()
 {
-	var str = "<br>";
+	var str = "\n";
 	
 	for(i = 0; i < garage.length; i++)
 	{
 		var faultStr = "";
 		for(j = 0; j < garage[i][3].length; j++)
 		{
-			faultStr += ("<br>- " + garage[i][3][j]);
+			faultStr += ("\n- " + garage[i][3][j]);
 		}
-		str += ("- - - - -<br>CAR " + (i + 1) 
-			+ "<br>- - - - -"
-			+ "<br>Manufacturer: " + garage[i][0]
-			+ "<br>Model: " + garage[i][1]
-			+ "<br>Registration: " + garage[i][2]
-			+ "<br>Faults:" 
+		str += ("- - - - -\nCAR " + (i + 1) 
+			+ "\n- - - - -"
+			+ "\nManufacturer: " + garage[i][0]
+			+ "\nModel: " + garage[i][1]
+			+ "\nRegistration: " + garage[i][2]
+			+ "\nFaults:" 
 			+ faultStr
-			+ "<br><br>"
+			+ "\n\n"
 		);
 	}
-	
-	document.getElementById("theOutput").innerHTML = str;
+	return str;
 }
+
+module.exports = 
+{
+	_garage: garage,
+	_carlist: allCars,
+	_doCmd: doCmd
+	
+};
