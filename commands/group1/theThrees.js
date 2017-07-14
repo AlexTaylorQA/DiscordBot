@@ -14,6 +14,7 @@ module.exports = class ReplyCommand extends Command {
     }
 
     run(msg) {
-        theThrees._threes(msg);
+        var theMsg = msg.content.split(" ");
+        msg.reply(theThrees._threes(parseInt(theMsg[2].trim())));
     }
 };

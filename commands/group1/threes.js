@@ -1,9 +1,6 @@
-function threes(msg) {
+function threes(num) {
 
-    var theMsg = msg.content.split(" ");
-    var num = parseInt(theMsg[2]);
-
-    var outStr = "";
+    var outStr = "\n" + num;
 
     while (num > 1) {
 
@@ -41,7 +38,7 @@ function threes(msg) {
         
     }
     console.log(outStr);
-    msg.reply(outStr);
+    return outStr;
 }
 
 module.exports =

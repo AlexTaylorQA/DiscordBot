@@ -1,3 +1,5 @@
+const theDice = require("./dice.js");
+
 const { Command } = require('discord.js-commando');
 
 module.exports = class ReplyCommand extends Command {
@@ -12,6 +14,8 @@ module.exports = class ReplyCommand extends Command {
     }
 
     run(msg) {
-        msg.reply("Result: " + (Math.floor(Math.random() * 6) + 1));
+        var img = "https://vignette2.wikia.nocookie.net/yugioh/images/2/2d/DangerousMachineType6-LCJW-EN-C-1E.png/revision/latest/scale-to-width-down/300?cb=20131012122138.png";
+        msg.channel.send({file: img })
+        msg.reply(theDice._dice());
     }
 };

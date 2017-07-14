@@ -35,6 +35,5 @@ function fizzBuzz(nmsg) {
 
 module.exports = 
 {
-	_fizzBuzz: fizzBuzz,
-	_theNum: num
+	_fizzBuzz: fizzBuzz
 };
