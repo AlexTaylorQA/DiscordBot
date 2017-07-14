@@ -10,7 +10,9 @@ client.registry
     .registerGroups([
         ['group1', 'Our First Command Group']
     ])
-    .registerCommandsIn(path.join(__dirname, 'commands'));
+    .registerCommandsIn(path.join(__dirname, 'commands'))
+    .registerDefaults()
+    ;
 
 client.on('ready', () => {
     console.log('Logged in!');

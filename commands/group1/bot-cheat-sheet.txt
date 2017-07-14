@@ -1,0 +1,26 @@
+!bot
+
+ >  hw
+
+ >  dice
+
+ >  fizzbuzz (x)
+
+ >  fibonacci
+     >  start (x) (y)
+     >  add (x)
+     >  display
+
+ > garage
+    > create (Manufacturer) (Model) (Registration) (Fault 1) (Fault 2) ...
+    > check in (Registration)
+    > output
+    > check out (Registration)
+
+ > api
+    > searchword
+
+
+NOTES:
+- (x) etc. represents a whole number input of your choice.
+- The garage can create cars with no faults. Just add nothing after registration.

@@ -8,8 +8,8 @@ module.exports = class ReplyCommand extends Command {
             name: 'garage',
             group: 'group1',
             memberName: 'garage',
-            description: 'This is the garage.',
-            examples: ['garage']
+            description: 'This is the garage. Manage your cars. (NOTE: Creating faults in cars is optional, just remove them from the command.)',
+            examples: ['!bot garage create (Manufacturer) (Model) (Registration) (Fault 1) (Fault 2) ... ', '!bot garage check in (Registration)', '!bot garage check out (Registration)', '!bot garage output']
         });
     }
 

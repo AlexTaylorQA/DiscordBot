@@ -1,6 +1,9 @@
+var theTries = 0;
+
 function diceRoll(){
     var randNum = (Math.floor(Math.random() * 6) + 1);
     var outStr = "\nYou activated 'Dangerous Machine Type-6'.\n\nDie result: " + randNum + "\n\n";
+    theTries += 1;
     switch(randNum){
         case 1:
             outStr += "Discard 1 card.";
@@ -24,14 +27,32 @@ function diceRoll(){
         
         case 6:
             outStr += "Destroy this card.";
+            theTries = 0;
             break;
         
     }
-    return outStr;
+    return outStr + "--zz--" + randNum;
 }
+
+function checkTries(){
+    if(theTries == 1)
+    {
+        return "\nYou have successfully activated \'Dangerous Machine Type-6\' " + theTries + " time."
+    }
+    else if(theTries > 6)
+    {
+        return "\nYou have successfully activated \'Dangerous Machine Type-6\' " + theTries + " times.\n\nCongrats! You've beaten the odds! (1/6)"
+    }
+    else
+    {
+        return "\nYou have successfully activated \'Dangerous Machine Type-6\' " + theTries + " times."
+    }
+}
+    
 
 module.exports =
     {
-        _dice: diceRoll
+        _dice: diceRoll,
+        _count: checkTries
 
     };

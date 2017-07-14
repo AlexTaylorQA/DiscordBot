@@ -8,14 +8,36 @@ module.exports = class ReplyCommand extends Command {
             name: 'dice',
             group: 'group1',
             memberName: 'dice',
-            description: 'This is the dice roll.',
-            examples: ['dice']
+            description: 'This is a dice roll function. It simulates the effect of a trading card based on die results.',
+            examples: ['!bot dice roll', '!bot dice count']
         });
     }
 
     run(msg) {
-        var img = "https://vignette2.wikia.nocookie.net/yugioh/images/2/2d/DangerousMachineType6-LCJW-EN-C-1E.png/revision/latest/scale-to-width-down/300?cb=20131012122138.png";
-        msg.channel.send({file: img})
-        msg.reply(theDice._dice());
+        var theMsg = msg.content.split(" ");
+
+        switch(theMsg[2])
+        {
+            case "roll":
+                var theOutput = theDice._dice().split("--zz--")
+                msg.reply(theOutput[0]);
+                
+                if (theOutput[1] == "6")
+                {
+                    msg.channel.send({file: "./commands/group1/dmt6-x.png"});
+                    break;
+                }
+                else
+                {
+                    msg.channel.send({file: "./commands/group1/dmt6.png"});
+                    break;
+                }
+
+            case "count":
+                msg.reply(theDice._count());
+                break;
+        }
+        
+         
     }
 };

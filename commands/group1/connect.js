@@ -38,7 +38,6 @@ function apiConnect(msg) {
             var value = JSON.parse(body)[key];
         }
         
-        msg.reply("... Processing ...")
         nuValue = sortAPI(value);
         search(msg, nuValue, theName);
     });
@@ -62,6 +61,14 @@ function search(theMsg, theValue, theName) {
             }
         }
     }
-    theMsg.reply(outStr);
-    console.log(outStr);
+    if(outStr.length > 1999)
+    {
+        theMsg.reply("\nToo many results. Please input a more specific search word.");
+        console.log(outStr);
+    }
+    else
+    {
+        theMsg.reply(outStr);
+        console.log(outStr);
+    }
 }

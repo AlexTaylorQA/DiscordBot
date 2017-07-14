@@ -8,8 +8,8 @@ module.exports = class ReplyCommand extends Command {
             name: 'fizzbuzz',
             group: 'group1',
             memberName: 'fizzbuzz',
-            description: 'This is FizzBuzz.',
-            examples: ['fizzbuzz']
+            description: 'This is FizzBuzz. Input a maximum number to get results.',
+            examples: ['!bot fizzbuzz (x)']
         });
     }
 

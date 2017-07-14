@@ -21,7 +21,6 @@ it("garage - check in", function ()
 
     if(theGarage._garage.length !== 1)
     {
-        console.log(theGarage._garage.length);
         throw new Error("The garage should contain 1 car.");
     }
 
@@ -35,7 +34,7 @@ it("garage - output", function ()
 
     if(getOutput !== "\n- - - - -\nCAR 1\n- - - - -\nManufacturer: Ford\nModel: Focus\nRegistration: SW08TNO\nFaults:\n- Cracked_Windscreen\n- Missing_Exhaust\n\n")
     {
-        throw new Error("Output should be:" + getOutput + "Your output is:" + "\n- - - - -\nCAR 1\n- - - - -\nManufacturer: Ford\nModel: Focus\nRegistration: SW08TNO\nFaults:\n- Cracked_Windscreen\n- Missing_Exhaust\n\n");
+        throw new Error("Output should be:" + getOutput);
     }
 });
 

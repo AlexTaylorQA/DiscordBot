@@ -8,8 +8,8 @@ module.exports = class ReplyCommand extends Command {
             name: 'threes',
             group: 'group1',
             memberName: 'threes',
-            description: 'This is a demo of dividing a number by 3 until it becomes 1.',
-            examples: ['garage']
+            description: 'This is a demo of dividing a number by 3 until it becomes 1. (NOTE: (x) represents the number you want to start from.)',
+            examples: ['!bot threes (x)']
         });
     }
 
